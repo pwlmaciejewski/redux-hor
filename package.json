@@ -1,0 +1,50 @@
+{
+  "name": "redux-hor",
+  "version": "0.0.1",
+  "description": "Higher-order Reducers for Redux",
+  "main": "index.js",
+  "repository": "https://github.com/pwlmaciejewski/redux-hor.git",
+  "author": "Paweł Maciejewski <pwlmaciejewski@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "tslint --project .",
+    "build": "tsc -p .",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "~23.0.1",
+    "@types/object-hash": "^1.2.0",
+    "@types/sinon": "^5.0.1",
+    "jest": "~23.0.1",
+    "jest-cli": "~23.0.1",
+    "jest-junit": "^5.1.0",
+    "sinon": "^6.1.5",
+    "ts-jest": "~23.0.1",
+    "ts-node": "^7.0.0",
+    "tslint": "^5.11.0",
+    "tslint-config-standard": "^7.1.0",
+    "typescript": "^3.0.1"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
+  "dependencies": {
+    "redux": "^4.0.0"
+  }
+}
