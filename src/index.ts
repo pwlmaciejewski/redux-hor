@@ -77,7 +77,7 @@ export const nest = <PS, S extends { [key: string]: any } = {}, A extends Action
     }
   )
 
-export const trigger = <T, S, A extends Action = AnyAction>(
+export const trigger = <S, A extends Action = AnyAction>(
   test: (state: S, action: A) => boolean,
   horCreator: (state: S | undefined, action: A) => HigherOrderReducer<S, A>
 ): HigherOrderReducer<S, A> => {
