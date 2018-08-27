@@ -1,5 +1,6 @@
 import 'jest'
-import { initialState, mergeState, compose, branch, passState, withState, withActionType, nest, always, elevate, identity } from '../src'
+import { initialState, mergeState, compose, branch, passState, withState, withActionType, nest, always, elevate, identity, trigger } from '../src'
+import * as sinon from 'sinon'
 
 describe('initialState', () => {
   type State = {
@@ -194,5 +195,49 @@ describe('nest', () => {
       bar: 2,
       baz: false
     })
+  })
+})
+
+describe('spawn', () => {
+  it('should pass the reducer if test did not pass', () => {
+    const action = { type: 'xxx' }
+    const reducer = compose(
+      trigger(
+        (state, action) => false,
+        (state, action) => withState('foo')
+      ),
+      withState('bar')
+    )(initialState('initial'))
+
+    const newState1 = reducer(undefined, action)
+    expect(newState1).toBe('bar')
+    const newState2 = reducer(newState1, action)
+    expect(newState2).toBe('bar')
+  })
+
+  it('should spawn a new reducer and create it only once', () => {
+    const action = { type: 'xxx' }
+    let counter = 0
+    const barHor = sinon.spy(withState('bar'))
+    const horCreator = sinon.spy((state, action) => withState('foo'))
+    const reducer = compose(
+      trigger(
+        (state, action) => {
+          counter++
+          return counter > 1
+        },
+        horCreator
+      ),
+      barHor
+    )(initialState('initial'))
+
+    const state1 = reducer(undefined, action)
+    expect(state1).toBe('bar')
+    const state2 = reducer(state1, action)
+    expect(state2).toBe('foo')
+    const state3 = reducer(state2, action)
+    expect(state3).toBe('foo')
+    expect(horCreator.calledOnce).toBe(true)
+    expect(barHor.calledOnce).toBe(true)
   })
 })

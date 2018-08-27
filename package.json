@@ -2,7 +2,7 @@
   "name": "redux-hor",
   "version": "0.0.1",
   "description": "Higher-order Reducers for Redux",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/pwlmaciejewski/redux-hor.git",
   "author": "Paweł Maciejewski <pwlmaciejewski@gmail.com>",
   "license": "MIT",
