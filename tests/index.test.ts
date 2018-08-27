@@ -153,7 +153,7 @@ describe('nest', () => {
     type State = {
       foo: string
     }
-    const reducer = nest<string, State>('foo', always('bar'))(initialState<State>({ foo: '' }))
+    const reducer = nest<string, State>('foo', () => withState('bar'))(initialState<State>({ foo: '' }))
     expect(reducer(undefined, { type: 'FOO' })).toEqual({ foo: 'bar' })
   })
 
@@ -166,15 +166,15 @@ describe('nest', () => {
     const reducer = compose(
       nest<string, State>(
         'foo',
-        withActionType('FOO', withState('yep'))(identity())
+        () => withActionType('FOO', withState('yep'))
       ),
       nest<number, State>(
         'bar',
-        withActionType('BAR', elevate<number>(state => state + 1))(identity())
+        () => withActionType('BAR', elevate<number>(state => state + 1))
       ),
       nest<boolean, State>(
         'baz',
-        elevate<boolean>(state => !state)(identity())
+        () => elevate<boolean>(state => !state)
       )
     )(initialState<State>({
       foo: 'nope',

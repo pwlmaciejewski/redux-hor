@@ -62,24 +62,43 @@ export const withActionType = <T, S, A extends Action<T> = AnyAction>(
 ): HigherOrderReducer<S, A> =>
   branch<S, A>((state: S, action: A) => action.type === actionType, actionHoR)
 
-type PropNameFn<S, A extends Action> = (state: S, action: A) => string
+// TODO: Test different return types
+type PropNameFn<S, A extends Action> = (state: S, action: A) => string | undefined
+type HorCreator<S, RS, A extends Action> = (state: S | undefined, action: A) => HigherOrderReducer<RS, A>
 
+// TODO: Tests are obsolete
 export const nest = <PS, S extends { [key: string]: any } = {}, A extends Action = AnyAction>(
   propName: string | PropNameFn<S, A>,
-  propReducer: Reducer<PS, A>
+  horCreator: HorCreator<S, PS, A>
 ): HigherOrderReducer<S, A> =>
-  elevate<S, A>(
-    (state: S, action: A) => {
-      propName = typeof propName === 'function' ? propName(state, action) : propName
+  (innerReducer: Reducer<S, A>): Reducer<S, A> =>
+    (state: S | undefined, action: A) => {
+      state = innerReducer(state, action)
+      const prop = typeof propName === 'function' ? propName(state, action) : propName
+      if (!prop) return state
+      propName = prop
+      const hor = horCreator(state, action)
       return Object.assign({}, state, {
-        [propName]: propReducer(state[propName], action)
+        [propName]: hor(identity())(state[propName], action)
       })
     }
-  )
 
+  // elevate<S, A>(
+  //   (state: S, action: A) => {
+  //     const prop = typeof propName === 'function' ? propName(state, action) : propName
+  //     if (!prop) return state
+  //     propName = prop
+  //     const reducer = propReducer(state, action)
+  //     return Object.assign({}, state, {
+  //       [propName]: reducer(state[propName], action)
+  //     })
+  //   }
+  // )
+
+// TODO: It's most likely obsolete by nest
 export const trigger = <S, A extends Action = AnyAction>(
   test: (state: S, action: A) => boolean,
-  horCreator: (state: S | undefined, action: A) => HigherOrderReducer<S, A>
+  horCreator: HorCreator<S, S, A>
 ): HigherOrderReducer<S, A> => {
   let hor: HigherOrderReducer<S, A>
   return (innerReducer: Reducer<S, A>): Reducer<S, A> =>
