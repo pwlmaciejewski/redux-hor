@@ -56,15 +56,30 @@ export const branch = <S, A extends Action = AnyAction>(
       return test(state, action) ? left(innerReducer)(state, action) : right(innerReducer)(state, action)
     }
 
+// TODO: Change name to withAction
+// TODO: Idea: replace actionType with string | testFn
+// TODO:
 export const withActionType = <T, S, A extends Action<T> = AnyAction>(
   actionType: T,
   actionHoR: HigherOrderReducer<S, A>
 ): HigherOrderReducer<S, A> =>
+  // TODO: Type checking: how to make action A type narrwed down if test passed??
   branch<S, A>((state: S, action: A) => action.type === actionType, actionHoR)
 
 // TODO: Test different return types
 type PropNameFn<S, A extends Action> = (state: S, action: A) => string | undefined
+
+// TODO: Can we make HoR out of it?? It would be very helpfun to be able to use HOR and HorCreator interchangebly
+// Maybe it's some kind of compose()?
 type HorCreator<S, RS, A extends Action> = (state: S | undefined, action: A) => HigherOrderReducer<RS, A>
+
+// WIP
+const withContext = <C, S, A extends Action>(
+  provider: (state: S | undefined, action: A) => C | undefined,
+  hocCreator: (context: C) => HigherOrderReducer<S, A>
+) => {
+  // branch: if there's context then execute provider
+}
 
 // TODO: Tests are obsolete
 export const nest = <PS, S extends { [key: string]: any } = {}, A extends Action = AnyAction>(
