@@ -1,9 +1,16 @@
 import { HigherOrderReducer, ContextProvider, HORCreator } from './models'
-import { Action } from 'redux'
+import { Action, AnyAction, Reducer } from 'redux'
+import identity from './identity';
 
-const withContext = <C, S, A extends Action>(
-  provider: ContextProvider<C, S, A>,
+export default <C, S, A extends Action = AnyAction>(
+  provider: ContextProvider<C | undefined, S, A>,
   horCreator: HORCreator<C, S, A>
-) => {
-  // branch: if there's context then execute provider
-}
+): HigherOrderReducer<S, A> => 
+  (innerReducer: Reducer<S, A>): Reducer<S, A> =>
+    (state: S | undefined, action: A) => {
+      state = innerReducer(state, action)
+      const context = provider(state, action)
+      if (!context) return state
+      const hor = horCreator(context)
+      return hor(identity())(state, action)
+    }

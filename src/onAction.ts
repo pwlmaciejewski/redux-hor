@@ -2,7 +2,7 @@ import { AnyAction, Action } from 'redux'
 import { HigherOrderReducer } from './models'
 import branch from './branch'
 
-export const withActionType = <T, S, A extends Action<T> = AnyAction>(
+export default <T, S, A extends Action<T> = AnyAction>(
   actionType: T,
   actionHoR: HigherOrderReducer<S, A>
 ): HigherOrderReducer<S, A> =>

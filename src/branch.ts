@@ -1,15 +1,15 @@
 import { Reducer, AnyAction, Action } from 'redux'
-import { HigherOrderReducer } from './models'
-import passState from './passState'
+import { HigherOrderReducer, ContextProvider } from './models'
+import passThrough from './passThrough'
+import identity from './identity'
 
 export default <S, A extends Action = AnyAction>(
-  test: (state: S, action: A) => boolean,
+  test: ContextProvider<boolean, S, A>,
   left: HigherOrderReducer<S, A>,
-  right: HigherOrderReducer<S, A> = passState<S, A>()
+  right: HigherOrderReducer<S, A> = passThrough<S, A>()
 ): HigherOrderReducer<S, A> =>
   (innerReducer: Reducer<S, A>) =>
     (state: S | undefined, action: A) => {
-      // TODO: innerReducer is called twice on different states, probably a bug
       state = innerReducer(state, action)
-      return test(state, action) ? left(innerReducer)(state, action) : right(innerReducer)(state, action)
+      return test(state, action) ? left(identity())(state, action) : right(identity())(state, action)
     }

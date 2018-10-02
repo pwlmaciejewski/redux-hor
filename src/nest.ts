@@ -2,9 +2,8 @@ import { ContextProvider, HORCreator, HigherOrderReducer } from './models'
 import { Reducer, Action, AnyAction } from 'redux'
 import identity from './identity'
 
-// TODO: Tests are obsolete
-export const nest = <PS, S extends { [key: string]: any } = {}, A extends Action = AnyAction>(
-  propName: string | ContextProvider<string, S, A>,
+export default <PS, S extends { [key: string]: any } = {}, A extends Action = AnyAction>(
+  propName: string | ContextProvider<string | undefined, S, A>,
   horCreator: HORCreator<string, PS, A>
 ): HigherOrderReducer<S, A> =>
   (innerReducer: Reducer<S, A>): Reducer<S, A> =>
