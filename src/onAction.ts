@@ -2,9 +2,19 @@ import { AnyAction, Action } from 'redux'
 import { HigherOrderReducer } from './models'
 import branch from './branch'
 
-export default <T, S, A extends Action<T> = AnyAction>(
-  actionType: T,
+export default <S, A extends Action = AnyAction>(
+  actions: Action | Action[],
   actionHoR: HigherOrderReducer<S, A>
 ): HigherOrderReducer<S, A> =>
-  // TODO: Type checking: how to make action A type narrwed down if test passed??
-  branch<S, A>((state: S, action: A) => action.type === actionType, actionHoR)
+  branch<S, A>(
+    (state: S, action: A) => {
+      if (Array.isArray(actions)) {
+        for (const a of actions) {
+          if (a.type === action.type) return true
+        }
+        return false
+      } 
+      return actions.type === action.type
+    },
+    actionHoR
+  )

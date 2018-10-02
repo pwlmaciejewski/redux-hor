@@ -39,4 +39,13 @@ describe('withContext', () => {
     const reducer = hor(init({ foo: 'bar' }))
     expect(reducer(undefined, { type: 'foo' })).toEqual({ foo: 'bar' })
   })
+
+  it('should not pass the state if context is falsy bout not undefined', () => {
+    const hor = withContext(
+      state => false,
+      c => merge({ foo: 'baz' })
+    )
+    const reducer = hor(init({ foo: 'bar' }))
+    expect(reducer(undefined, { type: 'foo' })).toEqual({ foo: 'baz' })
+  })
 })

@@ -10,7 +10,7 @@ export default <C, S, A extends Action = AnyAction>(
     (state: S | undefined, action: A) => {
       state = innerReducer(state, action)
       const context = provider(state, action)
-      if (!context) return state
+      if (typeof context === 'undefined') return state
       const hor = horCreator(context)
       return hor(identity())(state, action)
     }
