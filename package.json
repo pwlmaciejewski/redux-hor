@@ -9,7 +9,8 @@
   "scripts": {
     "lint": "tslint --project .",
     "build": "tsc -p .",
-    "test": "jest"
+    "test": "jest",
+    "docs": "typedoc --theme markdown --out docs"
   },
   "peerDependencies": {
     "redux": "^4.0.0"
