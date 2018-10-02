@@ -4,9 +4,9 @@ Higher-order Redux
 Higher-order Redux is a utility belt for Redux that makes
 heavy use of **higher-order reducers** to provide:
 
-* 🔩 Reduced boilerplate  
-* 📦 Increased modularity
-* 🚄 Development speedup
+🔩 Reduced boilerplate  
+📦 Increased modularity
+🚄 Development speedup
 
 Oh, btw... Higher-order reducer is a function that takes a reducer argument and returns a new reducer:
 
@@ -17,7 +17,7 @@ HigherOrderReducer<State, Action> = (innerReducer: Reducer<State, Action>): Redu
 ## Installation
 
 ```
-yarn add redux-hor
+yarn add higher-order-redux
 ```
 
 
