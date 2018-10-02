@@ -5,7 +5,7 @@ Higher-order Redux is a utility belt for Redux that makes
 heavy use of **higher-order reducers** to provide:
 
 🔩 Reduced boilerplate  
-📦 Increased modularity
+📦 Increased modularity  
 🚄 Development speedup
 
 Oh, btw... Higher-order reducer is a function that takes a reducer argument and returns a new reducer:
