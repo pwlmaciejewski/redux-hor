@@ -1,7 +1,18 @@
-# redux-hor
+Higher-order Redux
+-----
 
-Higher-order Reducers for Redux.
+Higher-order Redux is a utility belt for Redux that makes
+heavy use of **higher-order reducers** to provide:
 
+* 🔩 Reduced boilerplate  
+* 📦 Increased modularity
+* 🚄 Development speedup
+
+Oh, btw... Higher-order reducer is a function that takes a reducer argument and returns a new reducer:
+
+```typescript
+HigherOrderReducer<State, Action> = (innerReducer: Reducer<State, Action>): Reducer<State, Action>
+```
 
 ## Installation
 
@@ -12,13 +23,7 @@ yarn add redux-hor
 
 ## Quick start
 
-Higher-order reducer is a function that takes a reducer as an argument and returns a new reducer:
-
-```typescript
-HigherOrderReducer<State, Action> = (innerReducer: Reducer<State, Action>): Reducer<State, Action>
-```
-
-Here's a standard reducer:
+Here's a standard reducer that we all know an love:
 
 ```typescript
 export default function reducer (state = initialState, action) {
@@ -39,56 +44,16 @@ Compare it with HoR style:
 import { compose, withActionType, withInitialState, mergeState, identity } from 'redux-hor'
 
 export compose(
-  withActionType('UPDATE_AUTHOR', mergeState({ author: action.payload })),
-  withInitialState(initialState)
-)(identity)
+  onAction({ type: 'UPDATE_AUTHOR' }, merge({ author: action.payload }))
+)(init(initialState))
 ```
 
 
-## API
+## Recipes
 
-* [Reducers](#utilities)
-  + [`identity()`](#identity)
-  + [`mergeState()`](#mergestate)
-* [Higher-order Reducers](#higher-order-reducers)
-  + [`withInitialState()`](#withinitialstate)
-  + [`withActionType()`](#withactiontype)
-  + [`wrap()`](#wrap)
-  + [`compose()`](#compose)
+TBA
 
-### Reducers
 
-#### `identity()`
+## API docs
 
-It's a reducer that returns the input state.
-
-#### `mergeState()`
-
-```js
-mergeState<State, Action>(
-  partialState: State
-): Reducer<State, Action>
-```
-
-It creates a reducer that will merge input state with `partialState` object.
-
-#### `withInitialState()`
-
-```js
-withInitialState<State, Action>(
-  initialState: State
-): HigherOrderReducer<State, Action>
-```
-
-It will set the initial state if input state is `undefined`
-
-#### `withActionType()`
-
-```js
-withActionType<State, Action>(
-  actionType: any,
-  handler: Reducer<State, Action>
-): HigherOrderReducer<State, Action>
-```
-
-It will execute the `handler` reducer on the state if action type is equal `actionType`.
+[Read them here](./API.md)
