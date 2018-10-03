@@ -1,13 +1,11 @@
 # API (WIP)
 
 * [Reducers](#reducers)
-  + [`identity()`](#identity())
-  + [`init()`](#init())
-  + [`always()`](#always())
+  + [`identity()`](#identity)
+  + [`init()`](#init)
+  + [`always()`](#always)
   + [`pipe()`](#pipe)
 * [Higher-order Reducers](#higher-order-reducers)
-
----
 
 ## Reducers
 
@@ -74,7 +72,7 @@ myReducer(1, myAction)  // { foo: 'bar' }
 
 ---
 
-### pipe()
+### `pipe()`
 
 #### Params
 
