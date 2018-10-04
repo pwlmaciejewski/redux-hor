@@ -48,12 +48,6 @@ export compose(
 )(init(initialState))
 ```
 
-
-## Recipes
-
-TBA
-
-
 ## API docs
 
 [Read them here](./API.md)

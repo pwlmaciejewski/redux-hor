@@ -3,7 +3,7 @@ import pipe from './pipe'
 import { HigherOrderReducer } from './models'
 
 /**
- * Elevates the reducer to a higher-order reducer.
+ * Elevates the *reducer* to a higher-order reducer.
  */
 export default <S, A extends Action = AnyAction>(
   reducer: Reducer<S, A>

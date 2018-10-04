@@ -1,8 +1,8 @@
 import { Reducer, AnyAction, Action } from 'redux'
 
 /**
- * Joins two reducers: the output state of the innerReducer
- * is passed as an input state of the outer reducer.
+ * Joins two reducers: the output state of the *inner reducer*
+ * is passed as an input state of the *outer reducer*.
  */
 export default <S, A extends Action = AnyAction>(
   innerReducer: Reducer<S, A>,
