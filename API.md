@@ -198,7 +198,7 @@ reducer(undefined, { type: 'MY_ACTION' })  // 2
 
 #### Description
 
-Creates a *higher-order reducer* that merges *input state* and the mergeState objects.
+Creates a *higher-order reducer* that merges *input state* and the `mergeState` objects.
 State `S` must be an object. 
 
 #### Example
@@ -250,7 +250,7 @@ state = reducer(state, myAction)  // 0
 
 #### Description
 
-It check if the *input action* is one of the `actions` and executes the `actionHoR` *higher-order reducer*.
+It checks if the *input action* is one of the `actions` and executes the `actionHoR` *higher-order reducer*.
 `actions` argument can also be a single action.
 
 #### Example
