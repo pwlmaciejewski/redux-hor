@@ -1,4 +1,4 @@
-# API (WIP)
+# API
 
 * [Models](#models)
   * [`HigherOrderReducer<S, A>`](#higherorderreducer)
