@@ -1,8 +1,9 @@
 {
   "name": "redux-hor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Higher-order Reducers for Redux",
   "main": "lib/index.js",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/pwlmaciejewski/redux-hor.git",
   "author": "Paweł Maciejewski <pwlmaciejewski@gmail.com>",
   "license": "MIT",
@@ -47,5 +48,11 @@
   },
   "dependencies": {
     "redux": "^4.0.0"
-  }
+  },
+  "keywords": [
+    "redux",
+    "higher-order function",
+    "FP",
+    "utility"
+  ]
 }
