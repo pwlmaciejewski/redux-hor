@@ -1,4 +1,4 @@
-Higher-order Redux
+Redux-HOR
 -----
 
 Higher-order Redux is a utility belt for Redux that makes
@@ -18,7 +18,7 @@ HigherOrderReducer<State, Action> = (innerReducer: Reducer<State, Action>): Redu
 ## Installation
 
 ```
-yarn add higher-order-redux
+yarn add redux-hor
 ```
 
 

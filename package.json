@@ -1,15 +1,16 @@
 {
-  "name": "higher-order-redux",
+  "name": "redux-hor",
   "version": "0.0.1",
   "description": "Higher-order Reducers for Redux",
   "main": "lib/index.js",
-  "repository": "https://github.com/pwlmaciejewski/higher-order-redux.git",
+  "repository": "https://github.com/pwlmaciejewski/redux-hor.git",
   "author": "Paweł Maciejewski <pwlmaciejewski@gmail.com>",
   "license": "MIT",
   "scripts": {
     "lint": "tslint --project .",
     "build": "tsc -p .",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rm -rf lib"
   },
   "peerDependencies": {
     "redux": "^4.0.0"
