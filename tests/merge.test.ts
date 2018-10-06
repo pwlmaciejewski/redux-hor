@@ -1,5 +1,6 @@
 import 'jest'
-import { merge, init } from '../src'
+import { merge, init, onAction, elevate } from '../src'
+import { Action } from 'redux';
 
 describe('merge', () => {
   type State = {

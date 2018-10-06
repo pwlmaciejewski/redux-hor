@@ -19,11 +19,11 @@ describe('nest', () => {
     const reducer = compose(
       nest<string, State>(
         'foo',
-        () => onAction({ type: 'FOO' }, withState('yep'))
+        () => onAction({ type: 'FOO' }, () => withState('yep'))
       ),
       nest<number, State>(
         'bar',
-        () => onAction({ type: 'BAR' }, elevate<number>(state => state + 1))
+        () => onAction({ type: 'BAR' }, () => elevate<number>(state => state + 1))
       ),
       nest<boolean, State>(
         'baz',

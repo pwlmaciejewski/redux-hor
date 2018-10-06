@@ -245,20 +245,20 @@ state = reducer(state, myAction)  // 0
 
 #### Params
 
-* `actions: Action | Action[]`
-* `actionHoR: HigherOrderReducer<S, A>`
+* `horAction: string | A | A[]` - a `string` (action type), `Action` or an array of `Action`.
+* `horCreator: HORCreator<A, S, A>`
 
 #### Description
 
-It checks if the *input action* is one of the `actions` and executes the `actionHoR` *higher-order reducer*.
-`actions` argument can also be a single action.
+It check if the *input action* matches `horAction` and executes the `horCreator` if it does.
+Matched action will be passed as an argument to the `horCreator`.
 
 #### Example
 
 ```typescript
 const myAction = { type: 'MY_ACTION' }
 const otherAction = { type: 'OTHER_ACION' }
-const hor = onAction(myAction, elevate(state => state + 1))
+const hor = onAction(myAction, () => elevate(state => state + 1))
 const reducer = hor(init(0))
 let state = reducer(undefined, myAction)  // 1
 state = reducer(state, myAction)  // 2

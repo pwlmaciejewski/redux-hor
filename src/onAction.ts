@@ -1,25 +1,28 @@
 import { AnyAction, Action } from 'redux'
-import { HigherOrderReducer } from './models'
-import branch from './branch'
+import { HigherOrderReducer, HORCreator } from './models'
+import withContext from './withContext'
 
 /**
- * It check if the *input action* is one of the `actions` and executes the `actionHoR` *higher-order reducer*.
- * `actions` argument can also be a single action.
+ * It check if the *input action* matches `horAction` and executes the `horCreator` if it does.
+ * Matched action will be passed as an argument to the `horCreator`.
  */
 
 export default <S, A extends Action = AnyAction>(
-  actions: Action | Action[],
-  actionHoR: HigherOrderReducer<S, A>
+  horAction: string | A | A[],
+  horCreator: HORCreator<A, S, A>
 ): HigherOrderReducer<S, A> =>
-  branch<S, A>(
+  withContext<A, S, A>(
     (state: S, action: A) => {
-      if (Array.isArray(actions)) {
-        for (const a of actions) {
-          if (a.type === action.type) return true
+      if (typeof horAction === 'string') {
+        return action.type === horAction ? action : undefined  
+      } else if (!Array.isArray(horAction)) {
+        return action.type === horAction.type ? action : undefined
+      } else {
+        for (const a of horAction) {
+          if (a.type === action.type) return a
         }
-        return false
-      } 
-      return actions.type === action.type
+      }
+      return
     },
-    actionHoR
+    horCreator
   )
