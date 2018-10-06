@@ -20,6 +20,8 @@ HigherOrderReducer<State, Action> = (innerReducer: Reducer<State, Action>): Redu
 yarn add higher-order-redux
 ```
 
+**Warning** Not published just yet
+
 
 ## Quick start
 
