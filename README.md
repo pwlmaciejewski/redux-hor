@@ -45,7 +45,7 @@ Compare it with HoR style:
 import { compose, withActionType, withInitialState, mergeState, identity } from 'redux-hor'
 
 export compose(
-  onAction({ type: 'UPDATE_AUTHOR' }, merge({ author: action.payload }))
+  onAction('UPDATE_AUTHOR', () => merge({ author: action.payload }))
 )(init(initialState))
 ```
 
