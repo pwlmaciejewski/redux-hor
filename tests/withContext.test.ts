@@ -10,7 +10,7 @@ describe('withContext', () => {
 
     const hor = withContext<number, State>(
       state => state.foo ? 2 : 1,
-      counter => merge<State>({ 
+      counter => merge<State>({
         counter,
         foo: 'bar'
       })
@@ -23,7 +23,7 @@ describe('withContext', () => {
       foo: 'bar',
       counter: 1
     })
-    
+
     const state2 = reducer(state1, { type: 'foo' })
     expect(state2).toEqual({
       foo: 'bar',

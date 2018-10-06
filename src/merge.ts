@@ -2,7 +2,7 @@ import { AnyAction, Action } from 'redux'
 import { HigherOrderReducer } from './models'
 import elevate from './elevate'
 
-/** 
+/**
  * Creates a *higher-order reducer* that merges *input state* and the mergeState objects.
  * State `S` must be an object.
  */

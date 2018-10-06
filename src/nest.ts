@@ -3,13 +3,13 @@ import { Reducer, Action, AnyAction } from 'redux'
 import identity from './identity'
 
 /**
- * It executes the *higher-order reducer* returned by `horCreator` and 
- * assigns the result to the *input state* property with `propName`: 
- * 
+ * It executes the *higher-order reducer* returned by `horCreator` and
+ * assigns the result to the *input state* property with `propName`:
+ *
  * * state `S` must be an object
  * * `horCreator` is a function that takes the property name and return *higher-order reducer*
- * * `propName` can be a `string` or a *context provider* - a function that takes the input state and action and 
- * returns the property name. 
+ * * `propName` can be a `string` or a *context provider* - a function that takes the input state and action and
+ * returns the property name.
  * * if context provider returns `undefined` then input state is returned instead of executing `horCreator`
  */
 

@@ -66,12 +66,12 @@ describe('onAction', () => {
           p => withState({ foo: p.counter })
         )
       )(init({ foo: 0 }))
-  
+
       expect(reducer(undefined, fooAction)).toEqual({ foo: 1 })
       expect(reducer(undefined, barAction)).toEqual({ foo: 2 })
     })
-  
-    it('should pass the matched action to horCreator', () => {  
+
+    it('should pass the matched action to horCreator', () => {
       const reducer = onAction<State, MyAction>(
         [fooAction, barAction],
         a => merge({ foo: a.payload.counter })
@@ -79,5 +79,5 @@ describe('onAction', () => {
       expect(reducer(undefined, fooAction)).toEqual({ foo: 1 })
       expect(reducer(undefined, barAction)).toEqual({ foo: 2 })
     })
-  })  
+  })
 })

@@ -3,7 +3,7 @@ import { HigherOrderReducer } from './models'
 import elevate from './elevate'
 import always from './always'
 
-/** 
+/**
  * Creates a *higher-order* reducer that always returns the same state.
  * It's a higher-order equivalent of `always()`.
  */

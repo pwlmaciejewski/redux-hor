@@ -55,7 +55,7 @@ describe('nest', () => {
       foo: string
     }
     const reducer = nest<string, State>(
-      () => 'foo', 
+      () => 'foo',
       prop => withState(prop + 'bar')
     )(init<State>({ foo: '' }))
     expect(reducer(undefined, { type: 'FOO' })).toEqual({ foo: 'foobar' })

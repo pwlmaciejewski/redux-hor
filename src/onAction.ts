@@ -14,7 +14,7 @@ export default <S, A extends Action = AnyAction>(
   withContext<A, S, A>(
     (state: S, action: A) => {
       if (typeof horAction === 'string') {
-        return action.type === horAction ? action : undefined  
+        return action.type === horAction ? action : undefined
       } else if (!Array.isArray(horAction)) {
         return action.type === horAction.type ? action : undefined
       } else {

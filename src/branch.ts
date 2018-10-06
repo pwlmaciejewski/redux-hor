@@ -4,7 +4,7 @@ import passThrough from './passThrough'
 import identity from './identity'
 
 /**
- * It executes the `test`. If the result is `true` then it executes `left` branch hor. 
+ * It executes the `test`. If the result is `true` then it executes `left` branch hor.
  * Otherwise it executes `right` branch hor.
  */
 

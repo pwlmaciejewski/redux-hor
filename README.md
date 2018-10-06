@@ -14,13 +14,12 @@ Oh, btw... Higher-order reducer is a function that takes a reducer argument and 
 HigherOrderReducer<State, Action> = (innerReducer: Reducer<State, Action>): Reducer<State, Action>
 ```
 
+
 ## Installation
 
 ```
 yarn add higher-order-redux
 ```
-
-**Warning** Not published just yet
 
 
 ## Quick start
