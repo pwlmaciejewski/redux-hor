@@ -245,7 +245,7 @@ state = reducer(state, myAction)  // 0
 
 #### Params
 
-* `horAction: string | A | A[]` - a `string` (action type), `Action` or an array of `Action`.
+* `horAction: string | string[] | A | A[]`
 * `horCreator: HORCreator<A, S, A>`
 
 #### Description

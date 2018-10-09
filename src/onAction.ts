@@ -8,7 +8,7 @@ import withContext from './withContext'
  */
 
 export default <S, A extends Action = AnyAction>(
-  horAction: string | A | A[],
+  horAction: string | string[] | A | A[],
   horCreator: HORCreator<A, S, A>
 ): HigherOrderReducer<S, A> =>
   withContext<A, S, A>(
@@ -19,7 +19,13 @@ export default <S, A extends Action = AnyAction>(
         return action.type === horAction.type ? action : undefined
       } else {
         for (const a of horAction) {
-          if (a.type === action.type) return a
+          if (typeof a === 'string') {
+            if (a === action.type)  {
+              return action
+            }
+          } else if (a.type === action.type)  {
+            return action
+          }
         }
       }
       return

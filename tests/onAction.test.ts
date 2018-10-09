@@ -79,5 +79,18 @@ describe('onAction', () => {
       expect(reducer(undefined, fooAction)).toEqual({ foo: 1 })
       expect(reducer(undefined, barAction)).toEqual({ foo: 2 })
     })
+
+    it('should support an array of strings', () => {
+      const reducer = onAction<State, MyAction>(
+        ['FOO', 'BAR'],
+        a => withContext(
+          (state, action) => action.payload,
+          p => withState({ foo: p.counter })
+        )
+      )(init({ foo: 0 }))
+
+      expect(reducer(undefined, fooAction)).toEqual({ foo: 1 })
+      expect(reducer(undefined, barAction)).toEqual({ foo: 2 })
+    })
   })
 })
