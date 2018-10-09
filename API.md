@@ -49,7 +49,7 @@ type HORCreator<C, S, A extends Action> = (context: C) => HigherOrderReducer<S, 
 It's a reducer that returns the *input state* without modyfying it.
 It throws an error if *input state* is `undefined`.
 
-#### Example 
+#### Example
 
 ```typescript
 const myReducer = identity()
@@ -92,7 +92,7 @@ myReducer(2, myAction)  // 2
 
 #### Description
 
-Creates a reducer that returns always the same, predefined state. 
+Creates a reducer that returns always the same, predefined state.
 Ignores the *input state* and *action*.
 
 #### Example
@@ -199,7 +199,7 @@ reducer(undefined, { type: 'MY_ACTION' })  // 2
 #### Description
 
 Creates a *higher-order reducer* that merges *input state* and the `mergeState` objects.
-State `S` must be an object. 
+State `S` must be an object.
 
 #### Example
 
@@ -221,7 +221,7 @@ reducer(undefined, { type: 'MY_ACTION' })  // { foo: 'bar', baz: 'qux' }
 
 #### Description
 
-It executes the `test`. If the result is `true` then it executes `left` branch hor. 
+It executes the `test`. If the result is `true` then it executes `left` branch hor.
 Otherwise it executes `right` branch hor.
 
 #### Example
@@ -229,7 +229,7 @@ Otherwise it executes `right` branch hor.
 ```typescript
 const hor = branch(
   state => state < 2,
-  elevate(state => state + 1),  
+  elevate(state => state + 1),
   withState(0)
 )
 const reducer = hor(init(0))
@@ -272,17 +272,18 @@ state = reducer(state, otherAction)  // 2
 #### Params
 
 * `propName: string | ContextProvider<string | undefined, S, A>`
-* `horCreator: HORCreator<string, PS, A>`
+* `reducerCreator: (prop: string) => Reducer<PS, A>`
 
 #### Description
 
-It executes the *higher-order reducer* returned by `horCreator` and assigns the result to the *input state* property with `propName`: 
+ It executes the *reducer* returned by `reducerCreator` and
+ assigns the result to the *input state* property with `propName`:
 
-* state `S` must be an object
-* `horCreator` is a function that takes the property name and return *higher-order reducer*
-* `propName` can be a `string` or a *context provider* - a function that takes the input state and action and 
-returns the property name. 
-* if context provider returns `undefined` then input state is returned instead of executing `horCreator`
+  * state `S` must be an object
+  * `reducerCreator` is a function that takes the property name and returns *reducer*
+  * `propName` can be a `string` or a *context provider* - a function that takes the input state and action and
+  returns the property name.
+  * if context provider returns `undefined` then input state is returned instead of executing `reducerCreator`
 
 #### Example
 
@@ -290,7 +291,7 @@ returns the property name.
 const myAction = { type: 'MY_ACTION' }
 const hor = nest(
   'foo',
-  elevate(state => (state || 0) + 1)
+  elevate(state => state + 1)(init(0))
 )
 const reducer = hor(init({}))
 let state = reducer(undefined, myAction)  // { foo: 1 }
@@ -315,7 +316,7 @@ If `provider` returned `undefined` then `horCreator` execution is skipped and th
 #### Example
 
 ```typescript
-const myAction = { 
+const myAction = {
   type: 'MY_ACTION',
   counter: 1
 }
@@ -324,7 +325,7 @@ const hor = withContext(
   counter => withState({ foo: counter })
 )
 const reducer = hor(init({}))
-reducer(undefined, myAction)  // { foo: 1 } 
+reducer(undefined, myAction)  // { foo: 1 }
 ```
 
 ---

@@ -4,36 +4,35 @@ import { nest, withState, init, compose, elevate, onAction, merge, passThrough }
 describe('nest', () => {
   it('should call nested reducer and merge results', () => {
     type State = {
-      foo: string
+      foo?: string
     }
-    const reducer = nest<string, State>('foo', () => withState('bar'))(init<State>({ foo: '' }))
+    const reducer = nest<string, State>(
+      'foo',
+      () => withState('bar')(init(''))
+    )(init<State>({}))
     expect(reducer(undefined, { type: 'FOO' })).toEqual({ foo: 'bar' })
   })
 
   it('should handle complex nesting', () => {
     type State = {
-      foo: string
-      bar: number
-      baz: boolean
+      foo?: string
+      bar?: number
+      baz?: boolean
     }
     const reducer = compose(
       nest<string, State>(
         'foo',
-        () => onAction({ type: 'FOO' }, () => withState('yep'))
+        () => onAction({ type: 'FOO' }, () => withState('yep'))(init('nope'))
       ),
       nest<number, State>(
         'bar',
-        () => onAction({ type: 'BAR' }, () => elevate<number>(state => state + 1))
+        () => onAction({ type: 'BAR' }, () => elevate<number>(state => state + 1))(init(0))
       ),
       nest<boolean, State>(
         'baz',
-        () => elevate<boolean>(state => !state)
+        () => elevate<boolean>(state => !state)(init(false))
       )
-    )(init<State>({
-      foo: 'nope',
-      bar: 0,
-      baz: false
-    }))
+    )(init<State>({}))
 
     const state1 = reducer(undefined, { type: 'FOO' })
     expect(state1).toEqual({
@@ -52,12 +51,12 @@ describe('nest', () => {
 
   it('should accept function that will return property name', () => {
     type State = {
-      foo: string
+      foo?: string
     }
     const reducer = nest<string, State>(
       () => 'foo',
-      prop => withState(prop + 'bar')
-    )(init<State>({ foo: '' }))
+      prop => withState(prop + 'bar')(init(''))
+    )(init<State>({}))
     expect(reducer(undefined, { type: 'FOO' })).toEqual({ foo: 'foobar' })
   })
 })
