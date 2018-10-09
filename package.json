@@ -1,6 +1,6 @@
 {
   "name": "redux-hor",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Higher-order Reducers for Redux",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
