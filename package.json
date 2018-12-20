@@ -17,18 +17,18 @@
     "redux": "^4.0.0"
   },
   "devDependencies": {
-    "@types/jest": "~23.0.1",
-    "@types/object-hash": "^1.2.0",
-    "@types/sinon": "^5.0.1",
-    "jest": "~23.0.1",
-    "jest-cli": "~23.0.1",
-    "jest-junit": "^5.1.0",
-    "sinon": "^6.1.5",
-    "ts-jest": "~23.0.1",
-    "ts-node": "^7.0.0",
-    "tslint": "^5.11.0",
-    "tslint-config-standard": "^7.1.0",
-    "typescript": "^3.0.1"
+    "@types/jest": "23.0.2",
+    "@types/object-hash": "1.2.0",
+    "@types/sinon": "5.0.1",
+    "jest": "23.0.1",
+    "jest-cli": "23.0.1",
+    "jest-junit": "5.1.0",
+    "sinon": "6.1.5",
+    "ts-jest": "23.0.1",
+    "ts-node": "7.0.1",
+    "tslint": "5.11.0",
+    "tslint-config-standard": "7.1.0",
+    "typescript": "3.0.1"
   },
   "jest": {
     "verbose": true,
