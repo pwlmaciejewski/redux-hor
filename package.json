@@ -22,7 +22,7 @@
     "@types/sinon": "5.0.1",
     "jest": "23.0.1",
     "jest-cli": "23.0.1",
-    "jest-junit": "5.1.0",
+    "jest-junit": "5.2.0",
     "sinon": "6.1.5",
     "ts-jest": "23.0.1",
     "ts-node": "7.0.1",
