@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/jest": "23.0.2",
     "@types/object-hash": "1.2.0",
-    "@types/sinon": "5.0.1",
+    "@types/sinon": "5.0.7",
     "jest": "23.0.1",
     "jest-cli": "23.0.1",
     "jest-junit": "5.1.0",
