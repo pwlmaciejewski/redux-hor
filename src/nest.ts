@@ -1,6 +1,5 @@
 import { ContextProvider, HigherOrderReducer } from './models'
-import { Reducer, Action, AnyAction } from 'redux'
-import identity from './identity'
+import { Action, AnyAction, Reducer } from 'redux'
 
 /**
  * It executes the * reducer* returned by `reducerCreator` and

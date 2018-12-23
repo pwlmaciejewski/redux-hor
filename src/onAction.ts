@@ -20,10 +20,10 @@ export default <S, A extends Action = AnyAction>(
       } else {
         for (const a of horAction) {
           if (typeof a === 'string') {
-            if (a === action.type)  {
+            if (a === action.type) {
               return action
             }
-          } else if (a.type === action.type)  {
+          } else if (a.type === action.type) {
             return action
           }
         }

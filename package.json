@@ -22,12 +22,13 @@
     "@types/sinon": "^5.0.1",
     "jest": "~23.6.0",
     "jest-cli": "~23.6.0",
+    "@types/sinon": "^7.0.0",
     "jest-junit": "^5.1.0",
-    "sinon": "^6.1.5",
+    "sinon": "^7.0.0",
     "ts-jest": "~23.0.1",
     "ts-node": "^7.0.0",
     "tslint": "^5.11.0",
-    "tslint-config-standard": "^7.1.0",
+    "tslint-config-standard": "^8.0.0",
     "typescript": "^3.0.1"
   },
   "jest": {
