@@ -39,6 +39,10 @@ jobs:
       - store_artifacts:
           path: coverage
 
+      - run:
+          name: Codecov
+          command: yarn codecov
+
 workflows:
   version: 2
   test:
