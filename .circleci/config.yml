@@ -1,0 +1,46 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/node:10.6
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies
+
+      - run:
+          name: Install dependencies
+          command: yarn install --production=false
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Lint
+          command: yarn lint
+
+      - run:
+          name: Test
+          command: yarn test --ci --testResultsProcessor="jest-junit" --coverage
+          environment:
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+
+      - store_test_results:
+          path: reports/junit
+
+      - store_artifacts:
+          path: reports/junit
+
+      - store_artifacts:
+          path: coverage
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
