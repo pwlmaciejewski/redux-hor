@@ -1,6 +1,7 @@
 Redux-HOR 
 -----
 [![CircleCI](https://circleci.com/gh/pwlmaciejewski/redux-hor/tree/master.svg?style=svg)](https://circleci.com/gh/pwlmaciejewski/redux-hor/tree/master)
+[![codecov](https://codecov.io/gh/pwlmaciejewski/redux-hor/branch/master/graph/badge.svg)](https://codecov.io/gh/pwlmaciejewski/redux-hor)
 [![npm version](https://badge.fury.io/js/redux-hor.svg)](https://badge.fury.io/js/redux-hor)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
