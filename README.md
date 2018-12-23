@@ -1,4 +1,4 @@
-Redux-HOR
+Redux-HOR [![CircleCI](https://circleci.com/gh/pwlmaciejewski/redux-hor/tree/master.svg?style=svg)](https://circleci.com/gh/pwlmaciejewski/redux-hor/tree/master)
 -----
 
 Higher-order Redux is a utility belt for Redux that makes
