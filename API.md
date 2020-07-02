@@ -1,6 +1,6 @@
 # API
 
-* [Models](#models)
+* [Entities](#entities)
   * [`HigherOrderReducer<S, A>`](#higherorderreducer)
   * [`ContextProvider<C, S, A>`](#contextprovider)
   * [`HORCreator<C, S, A>`](#horcreator)
