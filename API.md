@@ -20,7 +20,7 @@
   + [`withContext()`](#withcontext)
   + [`compose()`](#compose)
 
-## Models
+## Entities
 
 ### `HigherOrderReducer`
 
