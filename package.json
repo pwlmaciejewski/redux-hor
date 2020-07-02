@@ -17,7 +17,7 @@
     "redux": "^4.0.0"
   },
   "devDependencies": {
-    "@types/jest": "~24.0.0",
+    "@types/jest": "~26.0.0",
     "@types/object-hash": "^1.2.0",
     "codecov": "^3.1.0",
     "jest": "~26.1.0",
